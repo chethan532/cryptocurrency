@@ -1,8 +1,8 @@
-import time  # to simulate a real time data, time loop
-
-import numpy as np  # np mean, np random
-import pandas as pd  # read csv, df manipulation
-import streamlit as st  # 🎈 data web app development
+import time
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import streamlit as st
 
 st.set_page_config(
     page_title="Real-Time Data Science Dashboard",
@@ -59,16 +59,16 @@ for seconds in range(200):
             value=round(avg_age),
             delta=round(avg_age) - 10,
         )
-        
+
         kpi2.metric(
             label="Married Count 💍",
             value=int(count_married),
             delta=-10 + count_married,
         )
-        
+
         kpi3.metric(
             label="A/C Balance ＄",
-            value=f"$ {round(balance,2)} ",
+            value=f"$ {round(balance, 2)} ",
             delta=-round(balance / count_married) * 100,
         )
 
@@ -76,11 +76,19 @@ for seconds in range(200):
         fig_col1, fig_col2 = st.columns(2)
         with fig_col1:
             st.markdown("### First Chart")
-            
-            
+            plt.figure(figsize=(8, 6))
+            plt.scatter(df["marital"], df["age_new"])
+            plt.xlabel("Marital")
+            plt.ylabel("Age_new")
+            st.pyplot()
+
         with fig_col2:
             st.markdown("### Second Chart")
-            
+            plt.figure(figsize=(8, 6))
+            plt.hist(df["age_new"], bins=20, color='skyblue', edgecolor='black')
+            plt.xlabel("Age_new")
+            plt.ylabel("Frequency")
+            st.pyplot()
 
         st.markdown("### Detailed Data View")
         st.dataframe(df)
