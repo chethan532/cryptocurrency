@@ -80,8 +80,7 @@ for seconds in range(200):
             
         with fig_col2:
             st.markdown("### Second Chart")
-            fig2 = px.histogram(data_frame=df, x="age_new")
-            st.write(fig2)
+            
 
         st.markdown("### Detailed Data View")
         st.dataframe(df)
