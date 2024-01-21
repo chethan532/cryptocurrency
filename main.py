@@ -1,9 +1,17 @@
 import time  # to simulate a real time data, time loop
-
+from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
 import numpy as np  # np mean, np random
 import pandas as pd  # read csv, df manipulation
 import plotly.express as px  # interactive charts
 import streamlit as st  # 🎈 data web app development
+
+load_dotenv()
+def init_connection():
+    mongodb_uri=f"mongodb+srv://{os.getenv('crypto_currency')}:{os.getenv('crypto_currency123')}@{os.getenv(cluster())}.mongodb.net/?retryWrites=true&w=majority"
+    return MongoClient(mongodb_uri)
+client=init_connection()
 
 st.set_page_config(
     page_title="Real-Time Data Science Dashboard",
