@@ -13,6 +13,25 @@ def init_connection():
     return MongoClient(mongodb_uri)
 client=init_connection()
 
+db = client.your_database_name
+collection = db.your_collection_name
+
+# Insert a new document
+document = {"symbol": "BTC", "price": 49000}
+collection.insert_one(document)
+
+# Query for documents
+documents = collection.find({"symbol": "BTC"})
+
+# Update a document
+collection.update_one({"symbol": "BTC"}, {"$set": {"price": 50000}})
+
+# Delete a document
+collection.delete_one({"symbol": "BTC"})
+
+data = collection.find()
+st.write(px.bar(data, x="symbol", y="price"))
+
 st.set_page_config(
     page_title="Real-Time Data Science Dashboard",
     page_icon="✅",
