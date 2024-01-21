@@ -23,3 +23,7 @@ jobs:
     - name: Run main
       run: |
         streamlit run main.py    
+      env:
+        GITHUB_USERNAME: ${{secrets.crypto_currency}}
+        GITHUB_EMAIL: ${{secrets.chethanpalabindela@gmail.com}}
+        GITHUB_PERSONAL_ACCESS_TOKEN: ${{secrets.cryptocurrency}}
