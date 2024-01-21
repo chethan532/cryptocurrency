@@ -1,33 +1,9 @@
 import time  # to simulate a real time data, time loop
-from pymongo import MongoClient
-import os
+
 import numpy as np  # np mean, np random
 import pandas as pd  # read csv, df manipulation
 import plotly.express as px  # interactive charts
 import streamlit as st  # 🎈 data web app development
-
-def init_connection():
-    mongodb_uri=f"mongodb+srv://{os.getenv('crypto_currency')}:{os.getenv('crypto_currency123')}@{os.getenv(cluster())}.mongodb.net/?retryWrites=true&w=majority"
-    return MongoClient(mongodb_uri)
-client = MongoClient("mongodb+srv://<username>:<password>@<clustername>.n4ycr4f.mongodb.net/?retryWrites=true&w=majority")
-db = client.mydatabase
-collection = db.mycollection
-
-# Insert a new document
-document = {"symbol": "BTC", "price": 49000}
-collection.insert_one(document)
-
-# Query for documents
-documents = collection.find({"symbol": "BTC"})
-
-# Update a document
-collection.update_one({"symbol": "BTC"}, {"$set": {"price": 50000}})
-
-# Delete a document
-collection.delete_one({"symbol": "BTC"})
-
-data = collection.find()
-st.write(px.bar(data, x="symbol", y="price"))
 
 st.set_page_config(
     page_title="Real-Time Data Science Dashboard",
@@ -46,8 +22,7 @@ def get_data() -> pd.DataFrame:
 df = get_data()
 
 # dashboard title
-st.title("Cryptocurrency Dashboard")
-st.subheader("Real-time prices for Bitcoin and Ethereum")
+st.title("Real-Time / Live Data Science Dashboard")
 
 # top-level filters
 job_filter = st.selectbox("Select the Job", pd.unique(df["job"]))
