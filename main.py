@@ -9,10 +9,9 @@ import streamlit as st  # 🎈 data web app development
 def init_connection():
     mongodb_uri=f"mongodb+srv://{os.getenv('crypto_currency')}:{os.getenv('crypto_currency123')}@{os.getenv(cluster())}.mongodb.net/?retryWrites=true&w=majority"
     return MongoClient(mongodb_uri)
-client=init_connection()
-
-db = client.your_database_name
-collection = db.your_collection_name
+client = MongoClient("mongodb+srv://<username>:<password>@<clustername>.n4ycr4f.mongodb.net/?retryWrites=true&w=majority")
+db = client.mydatabase
+collection = db.mycollection
 
 # Insert a new document
 document = {"symbol": "BTC", "price": 49000}
@@ -47,7 +46,8 @@ def get_data() -> pd.DataFrame:
 df = get_data()
 
 # dashboard title
-st.title("Real-Time / Live Data Science Dashboard")
+st.title("Cryptocurrency Dashboard")
+st.subheader("Real-time prices for Bitcoin and Ethereum")
 
 # top-level filters
 job_filter = st.selectbox("Select the Job", pd.unique(df["job"]))
